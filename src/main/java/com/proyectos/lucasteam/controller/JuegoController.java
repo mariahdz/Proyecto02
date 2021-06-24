@@ -51,7 +51,7 @@ public class JuegoController {
 	@GetMapping("/{year}")
 	public String listJuegosByYear(@RequestParam("year") int year, Model m) {
 		log.info("----- Inside listJuegos");
-		m.addAttribute("userList", service.findByYear(year);
+		m.addAttribute("userList", service.findByYear(year));
 		return "JuegosList";
 	}
 	
@@ -64,7 +64,7 @@ public class JuegoController {
 	@GetMapping("/edit")
 	public String editJuego(@RequestParam("id") int id, Model m) {
 		log.info("----- Inside editJuego");
-		m.addAttribute("juego", service.getOne(id));
+		m.addAttribute("juego", service.findById(id));
 		return "UserForm";
 	}
 	
