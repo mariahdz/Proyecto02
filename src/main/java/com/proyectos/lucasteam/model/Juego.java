@@ -64,7 +64,7 @@ public class Juego {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public int getRank() {
 		return rank;
 	}
@@ -120,7 +120,8 @@ public class Juego {
 	public void setNaSales(double naSales) {
 		this.naSales = naSales;
 	}
-
+	
+	
 	public double getEuSales() {
 		return euSales;
 	}

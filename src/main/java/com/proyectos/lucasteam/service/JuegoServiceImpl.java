@@ -46,6 +46,5 @@ public class JuegoServiceImpl implements JuegoService {
 		public List<Juego> findByYear(int year){
 			return juegoRepository.findByYear(year);
 		}
-	
-
+		
 }

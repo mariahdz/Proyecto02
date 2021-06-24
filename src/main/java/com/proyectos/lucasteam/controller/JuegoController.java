@@ -14,7 +14,7 @@ import com.proyectos.lucasteam.model.Juego;
 import com.proyectos.lucasteam.service.JuegoService;
 
 /**
- * 
+ * Control
  * @author Desiree
  * @version 24/06/2021/A
  *
@@ -50,9 +50,9 @@ public class JuegoController {
 	 */
 	@GetMapping("/{year}")
 	public String listJuegosByYear(@RequestParam("year") int year, Model m) {
-		log.info("----- Inside listJuegos");
-		m.addAttribute("userList", service.findByYear(year));
-		return "JuegosList";
+		log.info("----- Inside listJuegosPorAño");
+		m.addAttribute("juegosListAño", service.findByYear(year));
+		return "JuegosListAño";
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class JuegoController {
 	public String editJuego(@RequestParam("id") int id, Model m) {
 		log.info("----- Inside editJuego");
 		m.addAttribute("juego", service.findById(id));
-		return "UserForm";
+		return "JuegosForm";
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class JuegoController {
 	@GetMapping("/new")
 	public String newJuego(Juego juego, Model m) {
 		log.info("----- Inside newJuego");	
-		return "UserForm";
+		return "JuegosForm";
 	}
 	
 	/**
@@ -98,10 +98,15 @@ public class JuegoController {
 	 * @return
 	 */
 	@PostMapping("/save")
-	public ModelAndView saveUser(Juego juego) {
+	public ModelAndView saveJuego(Juego juego) {
 		log.info("----- Inside saveJuego");	
 		service.save(juego);
 		return new ModelAndView("redirect:/");
+	}
+	
+	@PostMapping("/salir")
+	public String salir() {
+		return ("redirect:/");
 	}
 
 
