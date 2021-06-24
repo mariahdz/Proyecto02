@@ -5,22 +5,21 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" th:href="@{/css/custom.css}" />
 
-<title>Luca Steam</title>
+<title>LUCA STEAM</title>
 </head>
 <body>
 
+
 	<div class="container" id="contenedor">
-		<h1>
-			Luca Steam<br />
-		</h1>
+		
 		<div align="center">
-			<h2>FORMULARIO DE JUEGOS</h2>
+			<h2>Añade / modifica un juego</h2>
 
 			<form 
-			method="post" 
+			method="POST" 
 			th:object="${juego}" 
 			th:action="@{/save}">
-				<input id="id" th:field="*{id}" type="hidden"/>			
+				<input id="id" th:field="*{id}" type="hidden"/>	
 				<table>
 					<tr>
 						<td><label for="name">Nombre del juego:</label></td>
@@ -70,8 +69,10 @@
 					<tr>
 						<td colspan="2" align="center"><input type="submit"
 							value="Guardar Registro"></td>
+							 
 					</tr>
 				</table>
+				 </div>	
 			</form>
 
 		</div>

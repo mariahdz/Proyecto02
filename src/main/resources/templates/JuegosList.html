@@ -15,15 +15,23 @@
 </head>
 
 <body>
+    
+    
+    <div class="bg-1" align = "center">
+
+    <h1 class="t-stroke t-shadow-halftone">LUCA STEAM</h>
+</div>
+    
+    
+    
     <div class="container" id="contenedor">
 
-        <h1>LucaSteam</h1>
-        <h2>Listado de Juegos</h2>
+        <h2>Listado de juegos</h2>
 
         <table>
             <tr>
                 <th>ID</th>
-                <th>Rango</th>
+                <th>Ranking</th>
                 <th>Name</th>
                 <th>Platform</th>
                 <th>Year</th>
@@ -48,8 +56,8 @@
                 <td th:text="${juego.jpSales}" />
                 <td th:text="${juego.otherSales}" />
                 <td th:text="${juego.globalSales}" />
-                <td><a th:href="@{/edit(id=${juego.id})}">Modificar Juego</a> | 
-                    <a th:href="@{/delete(id=${juego.id})}">Eliminar Juego</a></td>
+                <td><a th:href="@{/edit(id=${juego.id})}" class="btn btn-info">Modificar</a> | 
+                    <a th:href="@{/delete(id=${juego.id})}" class="btn btn-danger">Eliminar</a></td>
             </tr>
         </table>
         <a href="/new" class="btn btn-primary">Nuevo Juego</a>
