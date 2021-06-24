@@ -1,5 +1,7 @@
 package com.proyectos.lucasteam.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ public class JuegoController {
 
 	@Autowired
 	JuegoService service;
+	//CSVService serviceCSV;
 	
 	private static final Logger log = LoggerFactory.getLogger(JuegoController.class);	
 	
@@ -41,6 +44,17 @@ public class JuegoController {
 		m.addAttribute("juegosList", service.findAll());
 		return "JuegosList";
 	}
+	
+	/**
+	 * 
+	 * @param m
+	 * @return
+	 */
+	/*public String AñadirCSV(Model m) {
+		log.info("----- Inside listJuegosCSV");
+		m.addAttribute("juegosListCsv", serviceCSV.cargaInicial);
+		return ("redirect:/");
+	}*/
 	
 	/**
 	 * listar juegos por año dado
