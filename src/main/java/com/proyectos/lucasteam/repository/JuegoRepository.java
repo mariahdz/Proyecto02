@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.Query;
 @Repository
 public interface JuegoRepository extends JpaRepository<Juego, Integer>  {
 	
-	@Query(value = "SELECT * FROM lucasteam WHERE anio Like %?1%", nativeQuery = true)
+	@Query(value = "SELECT * FROM lucasteam WHERE lucasteam.anio %=:year%", nativeQuery = true)
 	List<Juego> findByYear(int year);
 	
 	
