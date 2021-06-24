@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/custom.css}" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado</title>
+</head>
+
+<body>
+    <div class="container" id="contenedor">
+
+        <h1>Spring10b-Listado</h1>
+        <h2>Listado de Juegos</h2>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+            <tr th:each="juego, status:${juegoList}">
+                <td th:text="${status.index+1}" />
+                <td th:text="${juego.username}" />
+                <td th:text="${user.password}" />
+                <td th:text="${user.email}" />
+                <td><a th:href="@{/edit(id=${user.id})}">Modificar</a> | 
+                    <a th:href="@{/delete(id=${user.id})}">Eliminar</a></td>
+            </tr>
+        </table>
+        <a href="/new" class="btn btn-primary">Nuevo Usuario</a>
+    </div>
+</body>
+
+</html>
