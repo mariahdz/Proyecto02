@@ -1,5 +1,8 @@
 package com.proyectos.lucasteam.service;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,4 +50,78 @@ public class JuegoServiceImpl implements JuegoService {
 			return juegoRepository.findByYear(year);
 		}
 		
-}
+		public static final String SEPARATOR = ",";
+		//private Map<Integer, Juego> inventario = new HashMap<>();
+		List <Juego> listaJuegos = new ArrayList<Juego>();
+		
+		//lectura csv
+		public List<Juego> cargaInicial() {
+			BufferedReader br = null;
+			Juego juego;
+
+			try {
+
+				br = new BufferedReader(new FileReader("data/vgsales1.csv"));
+				br.readLine();
+				String line = br.readLine();
+
+				while (null != line) {
+					String[] fields = line.split(SEPARATOR);
+					juego = lineToJuego(fields);
+					if (juego != null)
+						listaJuegos.add(juego);
+					line = br.readLine();
+				}
+				if (null != br)
+					br.close();
+
+			} catch (Exception e) {
+
+				System.out.println(e.getMessage());
+			}
+
+			return listaJuegos;
+		}
+
+		
+		
+		private Juego lineToJuego(String[] linea) {
+			Juego juego = null;
+			try {
+				juego = new Juego(linea);
+			
+			}catch(Exception e){
+				e.getMessage();
+			}
+			return juego;
+		}
+		
+		
+		//convertir mapa a lista
+		/*public List<Juego> convertMapToList(Map<Integer, Juego> mapaJuegos) {
+			
+			mapaJuegos = this.inventario;
+			List<Juego> listaJuegos = new ArrayList<Juego>(mapaJuegos.values());
+
+			return listaJuegos;
+		}*/
+		
+		
+		//guardar lista en BD
+		public void SaveListaJuegos(List <Juego> listaJuegos) {
+			listaJuegos = this.cargaInicial();
+			try {
+	          
+			  //List<Juego> listaJuegos = convertMapToList(inventario);
+	          juegoRepository.saveAll(listaJuegos);
+	        
+			}catch (Exception e) {
+	           e.getMessage();
+	        }
+		}
+		
+		
+
+	}
+		
+

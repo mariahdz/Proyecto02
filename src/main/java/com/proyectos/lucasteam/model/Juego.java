@@ -52,6 +52,21 @@ public class Juego {
 		this.globalSales = globalSales;
 	}
 	
+	public Juego(String[] line) {
+		super();
+		this.id = id;
+		this.rango = Integer.parseInt(line[0]);
+		this.name = line[1];
+		this.platform = line[2];
+		this.anio = Integer.parseInt(line[3]);
+		this.genre = line[4];
+		this.publisher = line[5];
+		this.naSales = Double.parseDouble(line[6]);
+		this.euSales = Double.parseDouble(line[7]);
+		this.jpSales = Double.parseDouble(line[8]);
+		this.otherSales = Double.parseDouble(line[9]);
+		this.globalSales = Double.parseDouble(line[10]);
+	}
 	
 	
 	@Id

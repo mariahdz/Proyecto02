@@ -28,6 +28,13 @@ public interface JuegoService {
 	//Para listar por años
 	public List<Juego> findByYear(int year);
 	
+	public List<Juego> cargaInicial();
+	
+		
+	public void SaveListaJuegos(List<Juego> listaJuegos);
+	
+}
+	
 	
 
-}
+

@@ -7,12 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.proyectos.lucasteam.model.Juego;
+import com.proyectos.lucasteam.service.CSVService;
 import com.proyectos.lucasteam.service.JuegoService;
 
 /**
@@ -28,7 +31,9 @@ public class JuegoController {
 
 	@Autowired
 	JuegoService service;
-	//CSVService serviceCSV;
+	
+	@Autowired
+	CSVService serviceCSV;
 	
 	private static final Logger log = LoggerFactory.getLogger(JuegoController.class);	
 	
@@ -50,11 +55,15 @@ public class JuegoController {
 	 * @param m
 	 * @return
 	 */
-	/*public String AñadirCSV(Model m) {
-		log.info("----- Inside listJuegosCSV");
-		m.addAttribute("juegosListCsv", serviceCSV.cargaInicial);
-		return ("redirect:/");
-	}*/
+		@GetMapping("/listar")
+		public String AñadirCSV() {
+			log.info("----- Inside listJuegosCSV");
+			List<Juego> listaJuegos = serviceCSV.cargaInicial();
+			serviceCSV.SaveListaJuegos(listaJuegos);
+			return ("redirect:/");
+		}
+		
+		
 	
 	/**
 	 * listar juegos por año dado
@@ -63,10 +72,11 @@ public class JuegoController {
 	 * @return
 	 */
 	@GetMapping("/{year}")
-	public String listJuegosByYear(@RequestParam("year") int year, Model m) {
+	public String listJuegosByYear(@PathVariable("year") int year, Model m) {
 		log.info("----- Inside listJuegosPorAño");
-		m.addAttribute("juegosListAño", service.findByYear(year));
-		return "JuegosListAño";
+		List<Juego> juegos = service.findByYear(year);
+		m.addAttribute("juegosList", service.findByYear(year));
+		return "JuegosList";
 	}
 	
 	/**
