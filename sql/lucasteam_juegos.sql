@@ -6,11 +6,11 @@ DROP TABLE IF EXISTS `juegos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `juegos` (
-  `id_juego` int NOT NULL,
-  `rank` int DEFAULT NULL,
+  `id_juego` int NOT NULL AUTO_INCREMENT,
+  `rango` int DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
   `platform` varchar(45) DEFAULT NULL,
-  `year` int DEFAULT NULL,
+  `anio` int DEFAULT NULL,
   `genre` varchar(45) DEFAULT NULL,
   `publisher` varchar(45) DEFAULT NULL,
   `na_sales` double DEFAULT NULL,

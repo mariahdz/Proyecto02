@@ -23,7 +23,7 @@
         <table>
             <tr>
                 <th>ID</th>
-                <th>Rank</th>
+                <th>Rango</th>
                 <th>Name</th>
                 <th>Platform</th>
                 <th>Year</th>
@@ -37,11 +37,10 @@
             </tr>
             <tr th:each="juego, status:${juegosList}">
                 <td th:text="${status.index+1}" />
-                <td th:text="${juego.id}" />
-                <td th:text="${juego.rank}" />
+                <td th:text="${juego.rango}" />
                 <td th:text="${juego.name}" />
                 <td th:text="${juego.platform}" />
-                <td th:text="${juego.year}" />
+                <td th:text="${juego.anio}" />
                 <td th:text="${juego.genre}" />
                 <td th:text="${juego.publisher}" />
                 <td th:text="${juego.naSales}" />

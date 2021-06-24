@@ -19,10 +19,10 @@ import javax.persistence.Table;
 public class Juego {
 	
 	private int id;
-	private int rank;
+	private int rango;
 	private String name;
 	private String platform;
-	private int year;
+	private int anio;
 	private String genre;
 	private String publisher;
 	private double naSales;
@@ -35,14 +35,14 @@ public class Juego {
 		super();
 	}
 
-	public Juego(int id, int rank, String name, String platform, int year, String genre, String publisher, double naSales,
+	public Juego(int id, int rango, String name, String platform, int anio, String genre, String publisher, double naSales,
 			double euSales, double jpSales, double otherSales, double globalSales) {
 		super();
 		this.id = id;
-		this.rank = rank;
+		this.rango = rango;
 		this.name = name;
 		this.platform = platform;
-		this.year = year;
+		this.anio = anio;
 		this.genre = genre;
 		this.publisher = publisher;
 		this.naSales = naSales;
@@ -64,13 +64,13 @@ public class Juego {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public int getRank() {
-		return rank;
+
+	public int getRango() {
+		return rango;
 	}
 
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setRango(int rango) {
+		this.rango = rango;
 	}
 
 	public String getName() {
@@ -89,12 +89,13 @@ public class Juego {
 		this.platform = platform;
 	}
 
-	public int getYear() {
-		return year;
+	@Column(name="anio")
+	public int getAnio() {
+		return anio;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setAnio(int anio) {
+		this.anio = anio;
 	}
 
 	public String getGenre() {
@@ -156,7 +157,7 @@ public class Juego {
 
 	@Override
 	public String toString() {
-		return "Juego [id=" + id + ", rank=" + rank + ", name=" + name + ", platform=" + platform + ", year=" + year
+		return "Juego [id=" + id + ", posición=" + rango + ", name=" + name + ", platform=" + platform + ", year=" + anio
 				+ ", genre=" + genre + ", publisher=" + publisher + ", naSales=" + naSales + ", euSales=" + euSales
 				+ ", jpSales=" + jpSales + ", otherSales=" + otherSales + ", globalSales=" + globalSales + "]";
 	}
