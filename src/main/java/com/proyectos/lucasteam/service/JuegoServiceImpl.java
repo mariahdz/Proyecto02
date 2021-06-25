@@ -1,12 +1,18 @@
 package com.proyectos.lucasteam.service;
 
+import java.awt.print.Pageable;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.proyectos.lucasteam.model.Juego;
@@ -20,10 +26,18 @@ import com.proyectos.lucasteam.repository.JuegoRepository;
  */
 
 @Service
+@Transactional
 public class JuegoServiceImpl implements JuegoService {
 	
 	@Autowired
 	JuegoRepository juegoRepository;
+	
+
+	
+	public JuegoServiceImpl(){
+		super();
+	}
+	
 	
 	//Para listar todos los juegos
 	public List<Juego> findAll(){
@@ -95,30 +109,14 @@ public class JuegoServiceImpl implements JuegoService {
 			}
 			return juego;
 		}
-		
-		
-		//convertir mapa a lista
-		/*public List<Juego> convertMapToList(Map<Integer, Juego> mapaJuegos) {
-			
-			mapaJuegos = this.inventario;
-			List<Juego> listaJuegos = new ArrayList<Juego>(mapaJuegos.values());
 
-			return listaJuegos;
-		}*/
-		
-		
-		//guardar lista en BD
-		public void SaveListaJuegos(List <Juego> listaJuegos) {
-			listaJuegos = this.cargaInicial();
-			try {
-	          
-			  //List<Juego> listaJuegos = convertMapToList(inventario);
-	          juegoRepository.saveAll(listaJuegos);
-	        
-			}catch (Exception e) {
-	           e.getMessage();
-	        }
+		@Override
+		public Page<Juego> findAll(PageRequest pageRequest) {
+			return juegoRepository.findAll(pageRequest);
 		}
+
+		
+	
 		
 		
 

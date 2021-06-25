@@ -3,6 +3,9 @@ package com.proyectos.lucasteam.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import com.proyectos.lucasteam.model.Juego;
 
 /**
@@ -14,7 +17,7 @@ import com.proyectos.lucasteam.model.Juego;
 public interface JuegoService {
 	
 	//Para listar todos los juegos
-	public List<Juego> findAll();
+	public Page<Juego> findAll(PageRequest pageRequest);
 	
 	//Para recuperar un juego
 	public Optional <Juego> findById(int id);
@@ -28,10 +31,8 @@ public interface JuegoService {
 	//Para listar por años
 	public List<Juego> findByYear(int year);
 	
-	public List<Juego> cargaInicial();
 	
 		
-	public void SaveListaJuegos(List<Juego> listaJuegos);
 	
 }
 	

@@ -38,7 +38,7 @@ public class CSVServiceImpl implements CSVService {
 
 		try {
 
-			br = new BufferedReader(new FileReader("data/vgsales1.csv"));
+			br = new BufferedReader(new FileReader("data/vgsales.csv"));
 			br.readLine();
 			String line = br.readLine();
 
@@ -74,18 +74,8 @@ public class CSVServiceImpl implements CSVService {
 	}
 	
 	
-	//convertir mapa a lista
-	/*public List<Juego> convertMapToList(Map<Integer, Juego> mapaJuegos) {
-		
-		mapaJuegos = this.inventario;
-		List<Juego> listaJuegos = new ArrayList<Juego>(mapaJuegos.values());
-
-		return listaJuegos;
-	}*/
-	
-	
 	//guardar lista en BD
-	public void SaveListaJuegos(List <Juego> listaJuegos) {
+	/*public void SaveListaJuegos(List <Juego> listaJuegos) {
 		listaJuegos = this.cargaInicial();
 		try {
         
@@ -94,9 +84,16 @@ public class CSVServiceImpl implements CSVService {
 		}catch (Exception e) {
            e.getMessage();
         }
-	}
+	}*/
 	
+		public List<Juego> saveAllAndFlush(Iterable<Juego> iterable) {
+        List<Juego> list = repository.saveAll(iterable);
+        repository.flush();
+        return list;
+    }
 }
+	
+
 	
 	
 
