@@ -27,6 +27,15 @@
     <div class="container" id="contenedor">
 
         <h2>Listado de juegos</h2>
+        
+        <form 
+			method="POST" 
+			th:action="@{/year}">
+				<input type="number" value="Año" name="year"/>	
+				<input type="submit"
+							value="Filtrar por año">
+		</form>
+        
 
         <table>
             <tr>
