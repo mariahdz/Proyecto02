@@ -1,8 +1,8 @@
 /* resources */
 .form-container {
   position: fixed;
-  width: 50%;
-  margin-left: 20px;
+  width: 100%;
+  margin-left: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
@@ -77,7 +77,7 @@ th {
 }
 
 table {
-  width: 100%;
+  width: 120%;
   margin-bottom: 30px;
   padding: 5px;
   border-bottom-width: 0.5px;
