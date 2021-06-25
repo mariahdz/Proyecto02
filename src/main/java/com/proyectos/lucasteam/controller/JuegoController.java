@@ -1,10 +1,15 @@
 package com.proyectos.lucasteam.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,11 +49,28 @@ public class JuegoController {
 	 * @return
 	 */
 	@GetMapping("/")
+	public String findAll(@RequestParam Map<String, Object> params, Model m){
+		int page = params.get("page") != null ? Integer.valueOf(params.get("page").toString())-1 : 0;
+		PageRequest pageRequest = PageRequest.of(page, 100);
+		Page<Juego> pageJuego = service.findAll(pageRequest);
+		int totalPage = pageJuego.getTotalPages();
+		if(totalPage > 0) {
+			List<Integer> pages = IntStream.rangeClosed(1,  totalPage).boxed().collect(Collectors.toList());
+			m.addAttribute("pages", pages);
+		}
+		
+		m.addAttribute("juegosList", pageJuego.getContent());
+		
+		
+		return "JuegosList";
+	}
+	
+	/*@GetMapping("/")
 	public String listJuegos(Model m) {
 		log.info("----- Inside listJuegos");
 		m.addAttribute("juegosList", service.findAll());
 		return "JuegosList";
-	}
+	}*/
 	
 	/**
 	 * 
@@ -59,7 +81,7 @@ public class JuegoController {
 		public String AñadirCSV() {
 			log.info("----- Inside listJuegosCSV");
 			List<Juego> listaJuegos = serviceCSV.cargaInicial();
-			serviceCSV.SaveListaJuegos(listaJuegos);
+			serviceCSV.saveAllAndFlush(listaJuegos);
 			return ("redirect:/");
 		}
 		

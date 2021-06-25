@@ -9,7 +9,9 @@ package com.proyectos.lucasteam.service;
 		
 		public List<Juego> cargaInicial();
 		
-		public void SaveListaJuegos(List<Juego> listaJuegos);
+		//public void SaveListaJuegos(List<Juego> listaJuegos);
+		
+		public List<Juego> saveAllAndFlush(Iterable<Juego> iterable);
 	}
 
 
